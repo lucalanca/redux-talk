@@ -1,0 +1,72 @@
+{
+	"users": {
+		"1": {
+			"name": "João Figueiredo",
+			"avatar_url": "asd"
+		},
+		"2": {
+			"name": "Joël Bez",
+			"avatar_url": "asd"
+		}
+	},
+	"columns": {
+		"1": {
+			"name": "Backlog",
+			"isEditing": false
+		},
+		"2": {
+			"name": "Todo",
+			"isEditing": false
+		},
+		"3": {
+			"name": "Doing",
+			"isEditing": false
+		},
+		"4": {
+			"name": "Done",
+			"isEditing": false
+		},
+		"5": {
+			"name": "Shipped",
+			"isEditing": false
+		}
+	},
+	"tasks": {
+		"1": {
+			"name": "Task 1",
+			"column": "2",
+			"transactions": [
+				{
+					"type": "created",
+					"date": "20/12/2016"
+				},
+				{
+					"type": "moved",
+					"from": "1",
+					"to": "2",
+					"date": "20/12/2016"
+				}
+			]
+		},
+		"2": {
+			"name": "Task 2",
+			"column": "1",
+			"transactions": [
+				{
+					"type": "created",
+					"date": "20/12/2016"
+				}
+			]
+		},
+		"3": {
+			"name": "Task 3",
+			"column": "1",
+			"transactions": [
+				{
+					"type": "created",
+					"date": "20/12/2016"
+				}
+			]
+		}
+	}
+}

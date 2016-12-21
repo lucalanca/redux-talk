@@ -1,0 +1,48 @@
+html {
+  font-size: 100%;
+}
+
+html,
+.t-sans-serif {
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.t-slab {
+  font-family: 'Slabo 27px', serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 0;
+  font-weight: normal;
+}
+
+h1:first-child,
+h2:first-child,
+h3:first-child,
+h4:first-child,
+h5:first-child,
+h6:first-child {
+  margin-top: 0;
+}
+
+
+:root {
+  --c-background: #F9FAFC;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--c-background);
+}
