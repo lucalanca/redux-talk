@@ -2,8 +2,9 @@
   "name": "kanban-board",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://lucalanca.github.io/redux-talk/react",
+  "homepage": "https://lucalanca.github.io/redux-talk",
   "devDependencies": {
+    "gh-pages": "^0.12.0",
     "react-scripts": "0.8.4"
   },
   "dependencies": {
