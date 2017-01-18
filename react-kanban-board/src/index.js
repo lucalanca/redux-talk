@@ -3,9 +3,15 @@ import { render } from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import createLogger from 'redux-logger'
+
+import { Router, Route, IndexRoute, browserHistory } from 'react-router'
+
+
 import reducer from './reducers'
-import Board from './containers/Board';
-import './index.css';
+import App from './containers/App'
+import Board from './containers/Board'
+import Timeline from './containers/Timeline'
+import './index.css'
 
 const store = createStore(
     reducer,
@@ -14,7 +20,12 @@ const store = createStore(
 
 render(
   <Provider store={store}>
-    <Board />
+    <Router history={browserHistory}>
+      <Route path="/" component={App}>
+        <IndexRoute component={Board}/>
+        <Route path="timeline" component={Timeline}/>
+      </Route>
+    </Router>
   </Provider>,
   document.getElementById('root')
 )

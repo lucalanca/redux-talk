@@ -1,12 +1,12 @@
-export const RENAME_COLUMN = 'RENAME_COLUMN'
+export const RENAME_COLUMUN = 'RENAME_COLUMUN'
 export const MOVE_COLUMN_BACKWARD = 'MOVE_COLUMN_BACKWARD';
 export const MOVE_COLUMN_FOWARD = 'MOVE_COLUMN_FOWARD';
 export const DELETE_COLUMN = 'DELETE_COLUMN';
 export const ADD_COLUMN = 'ADD_COLUMN';
 
-export const renameColumn = (id, name, userId) => ({
-	type: RENAME_COLUMN,
-	payload: {id, name, userId}
+export const renameColumn = (id, name, userId = 'me') => ({
+  type: RENAME_COLUMUN,
+  payload: {id, name, userId}
 })
 
 export const moveColumnBackward = (id) => ({
@@ -35,19 +35,19 @@ export const MOVE_TASK = 'MOVE_TASK'
 export const DELETE_TASK = 'DELETE_TASK'
 export const ADD_TASK = 'ADD_TASK'
 
-export const renameTask = (id, name, userId) => ({
-	type: RENAME_TASK,
-	payload: {id, name, userId}
+export const renameTask = (id, name, userId = 'me') => ({
+  type: RENAME_TASK,
+  payload: {id, name, userId}
 })
 
-export const moveTask = (id, fromColumn, toColumn, userId) => ({
-	type: MOVE_TASK,
-	payload: {id, fromColumn, toColumn, userId}
+export const moveTask = (id, toColumn, userId) => ({
+  type: MOVE_TASK,
+  payload: {id, toColumn, userId}
 })
 
 export const deleteTask = (id) => ({
-	type: DELETE_TASK,
-	payload: id
+  type: DELETE_TASK,
+  payload: id
 })
 
 export const addTask = (columnId) => ({

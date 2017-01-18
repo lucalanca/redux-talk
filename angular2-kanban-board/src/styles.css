@@ -1,13 +1,13 @@
 :root {
   --s-tiny: .25rem;
-	--s-small: .5rem;
-	--s-base: 1rem;
-	--s-big: 2rem;
-	--s-huge: 3rem;
+  --s-small: .5rem;
+  --s-base: 1rem;
+  --s-big: 2rem;
+  --s-huge: 3rem;
 
 
 
-	--c-gray-light: #EEE;
+  --c-gray-light: #EEE;
   --c-background: #F9FAFC;
 
 
@@ -129,18 +129,18 @@ button {
 
 
 .board {
-	display: flex;
-	padding: var(--s-base);
+  display: flex;
+  padding: var(--s-base);
 }
 
 .board__add-column,
 .board__column {
-	flex: 1 0;
+  flex: 1 0;
 }
 
 .board__add-column,
 .board__add-task {
-	font-size: 4rem;
+  font-size: 4rem;
 }
 
 .board__column {
@@ -151,26 +151,26 @@ button {
 }
 
 .board__column:not(:last-child) {
-	margin-right: var(--s-small);
+  margin-right: var(--s-small);
 }
 
 .board__actions {
-	visibility: hidden;
-	opacity: 0;
+  visibility: hidden;
+  opacity: 0;
   text-align: right;
 }
 
 .board__column:hover .board__actions {
-	visibility: visible;
-	opacity: 1;
+  visibility: visible;
+  opacity: 1;
 }
 
 .board__title {
-	display: flex;
-	width: 100%;
-	align-items: center;
-	text-align: center;
-	cursor: text;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  text-align: center;
+  cursor: text;
 }
 
 .board__title-button {
@@ -184,19 +184,19 @@ button {
 
 .board__title,
 .board__title-field {
-	border: 0;
-	padding: 0;
-	font-size: 1.5rem;
+  border: 0;
+  padding: 0;
+  font-size: 1.5rem;
   font-weight: 700;
   text-transform: uppercase;
-	background: transparent;
-	font-family: inherit;
+  background: transparent;
+  font-family: inherit;
 }
 
 .board__title-field {
-	flex: 1;
-	width: 1%;
-	text-align: center;
+  flex: 1;
+  width: 1%;
+  text-align: center;
 }
 
 .board__tasks {
@@ -206,23 +206,23 @@ button {
 
 .board__task,
 .board__add-task {
-	padding: var(--s-base);
+  padding: var(--s-base);
 }
 
 .board__task {
   background: var(--c-melrose-lightest);
-	border: 2px solid var(--c-melrose-lighter);
+  border: 2px solid var(--c-melrose-lighter);
   min-height: 100px;
   box-sizing: border-box;
 }
 .board__task:hover {
   background-color: var(--c-melrose-lighter);
-	border-color: var(--c-melrose-light);
+  border-color: var(--c-melrose-light);
 }
 
 .board__task:not(:first-child),
 .board__add-task {
-	margin-top: var(--s-base);
+  margin-top: var(--s-base);
 }
 
 .board__add-task {
@@ -230,17 +230,17 @@ button {
 }
 
 .board__task-header {
-	flex: 1;
-	align-items: center;
+  flex: 1;
+  align-items: center;
 }
 
 .board__task-header,
 .board__task-footer {
-	display: flex;
+  display: flex;
 }
 
 .board__task-footer {
-	align-items: center;
+  align-items: center;
 }
 
 .board__task-actions {
@@ -249,8 +249,8 @@ button {
 
 .board__task-actions,
 .board__add-task {
-	visibility: hidden;
-	opacity: 0;
+  visibility: hidden;
+  opacity: 0;
 }
 
 .board__task.is-editing .board__task-actions,
@@ -262,26 +262,26 @@ button {
 }
 
 .board__task-name {
-	flex: 1;
-	width: 1%;
-	display: flex;
-	align-items: center;
-	text-align: center;
-	cursor: text;
+  flex: 1;
+  width: 1%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  cursor: text;
 }
 
 .board__task-name,
 .board__task-name-field {
-	border: 0;
-	padding: 0;
-	font-size: 1.125rem;
-	background: transparent;
-	font-family: inherit;
+  border: 0;
+  padding: 0;
+  font-size: 1.125rem;
+  background: transparent;
+  font-family: inherit;
 }
 
 .board__task-name-field {
-	flex: 1;
-	text-align: center;
+  flex: 1;
+  text-align: center;
 }
 
 .board__task-name-button {
@@ -295,9 +295,9 @@ button {
 }
 
 .board__task-assignee {
-	display: inline-block;
-	border-radius: 50%;
-	width: var(--s-big);
-	height: var(--s-big);
-	margin-right: var(--s-base);
+  display: inline-block;
+  border-radius: 50%;
+  width: var(--s-big);
+  height: var(--s-big);
+  margin-right: var(--s-base);
 }
