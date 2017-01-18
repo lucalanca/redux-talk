@@ -1,0 +1,1 @@
+export default function tasks(state = Object, { type: string, payload: any }) : Object;

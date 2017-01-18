@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { getColumnsWithTasks } from './reducers/columns';
+import { getColumnsWithTasks } from './common-kanban-redux/reducers/columns';
 import 'rxjs/add/operator/map';
 
 import * as actionCreators from './actions';

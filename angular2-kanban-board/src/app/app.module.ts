@@ -5,7 +5,20 @@ import { HttpModule } from '@angular/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 
-import { reducer }from './reducers';
+
+import { combineReducers } from '@ngrx/store';
+import { storeFreeze } from 'ngrx-store-freeze';
+import { compose } from '@ngrx/core/compose';
+
+import columns from './common-kanban-redux/reducers/columns';
+import tasks from './common-kanban-redux/reducers/tasks';
+
+export function reducer(state: any, action: any) {
+  return compose(storeFreeze, combineReducers)({
+    columns, tasks
+  })(state, action);
+};
+
 
 import { AppComponent } from './app.component';
 import { ColumnComponent } from './components/Column';

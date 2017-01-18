@@ -5,9 +5,10 @@ import {
   DELETE_TASK,
   ADD_TASK
 } from '../actions'
+
 import {
   removeKeyFromObject
-} from './helpers'
+} from '../helpers';
 
 const INITIAL_TASKS = {
   "1": {

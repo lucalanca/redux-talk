@@ -1,12 +1,12 @@
 import React from 'react'
 import { Component } from 'react'
 import { connect } from 'react-redux'
-import * as actions from '../actions'
+
+import * as actions from '../common-kanban-redux/actions'
+import { getColumnsWithTasks } from '../common-kanban-redux/reducers/columns'
 
 import Column from '../components/Column'
 import Task from '../components/Task'
-
-import { getColumnsWithTasks } from '../reducers/columns'
 
 export class Board extends Component {
 

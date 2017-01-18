@@ -12,5 +12,12 @@
     "typeRoots": [
       "../node_modules/@types"
     ]
+  },
+  "paths": {
+    "*": [
+      "../../common-kanban-redux/*",
+      "../../common-kanban-redux/reducers/*",
+      "../../common-kanban-redux/actions/*"
+    ]
   }
 }

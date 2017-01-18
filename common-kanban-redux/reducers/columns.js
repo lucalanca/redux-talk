@@ -10,7 +10,7 @@ import {
 import {
   arrayfyObject,
   removeKeyFromObject
-} from './helpers'
+} from '../helpers';
 
 const INITIAL_COLUMNS  = {
   "1": {
@@ -49,7 +49,7 @@ export default function columns (state = INITIAL_COLUMNS, { type, payload }) {
     const index = state[payload].index;
     const newState = removeKeyFromObject(state, payload);
     return Object.keys(newState)
-      .reduce((acc, currentId) : {} => {
+      .reduce((acc, currentId) => {
         const curr = newState[currentId];
         if (curr.index > index) {
           return Object.assign({}, acc, {
@@ -110,7 +110,7 @@ export function getColumnsWithTasks(state) {
   const tasks = arrayfyObject(state.tasks || {});
   const users = arrayfyObject(state.users || {});
   return sortBy(columns, 'index')
-    .map(column => Object.assign({}, column, {
+    .map((column)=> Object.assign({}, column, {
       tasks: tasks.filter(t => t.column === column.id).map(t => Object.assign({}, t, {
         assignees: users.filter(u => Object.keys(t.assignees).indexOf(u.id) !== -1)
       }))
