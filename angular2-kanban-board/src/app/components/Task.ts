@@ -1,12 +1,12 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 
 @Component({
   selector: 'task',
   template: `
     <div class="board__task">
       <div class="board__task-header">
-        <form class="board__task-name" (submit)="onTaskNameChange.emit('foo')">
-          <input type="text" class="board__task-name-field" [value]="task.name" (focus)="$event.target.select()">
+        <form class="board__task-name" (submit)="onTaskNameChange.emit(tempName)">
+          <input type="text" class="board__task-name-field"  name="name" [(ngModel)]="tempName" (focus)="$event.target.select()">
         </form>
       </div>
       <div class="board__task-actions">
@@ -19,7 +19,7 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 
   `
 })
-export class TaskComponent {
+export class TaskComponent implements OnInit {
   @Input() task;
   @Input() hasBackwardButton: boolean = false;
   @Input() hasFowardButton: boolean = false;
@@ -28,4 +28,11 @@ export class TaskComponent {
   @Output() onMoveTaskBackward = new EventEmitter();
   @Output() onDeleteTask = new EventEmitter();
   @Output() onTaskNameChange = new EventEmitter();
+
+  tempName: string;
+
+  ngOnInit() {
+    this.tempName = this.task.name;
+  }
+
 }

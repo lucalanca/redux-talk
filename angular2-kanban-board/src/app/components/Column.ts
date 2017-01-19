@@ -1,26 +1,24 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 
 
 @Component({
   selector: 'column',
   template: `
-    <div class="board__column">
-      <form class="board__title" (submit)="onColumnNameChange.emit('foo')">
-        <input  type="text"  class="board__title-field"  (focus)="$event.target.select()" [value]="column.name" />
-      </form>
-      <div class="board__actions">
-        <button type="button" *ngIf="hasBackwardButton" class="button-icon" (click)="onMoveColumnBackward.emit()">◀</button>
-        <button type="button" *ngIf="hasFowardButton" class="button-icon" (click)="onMoveColumnFoward.emit()">▶</button>
-        <button type="button" class="button-icon" (click)="onDeleteColumn.emit()">✝</button>
-      </div>
-      <div class="board__tasks">
-        <ng-content></ng-content>
-      </div>
-      <button class="board__add-task button-icon" (click)="onAddTask.emit()">+</button>
+    <form class="board__title" (submit)="onColumnNameChange.emit(tempName)">
+      <input  type="text"  class="board__title-field" name="name" (focus)="$event.target.select()" [(ngModel)]="tempName" />
+    </form>
+    <div class="board__actions">
+      <button type="button" *ngIf="hasBackwardButton" class="button-icon" (click)="onMoveColumnBackward.emit()">◀</button>
+      <button type="button" *ngIf="hasFowardButton" class="button-icon" (click)="onMoveColumnFoward.emit()">▶</button>
+      <button type="button" class="button-icon" (click)="onDeleteColumn.emit()">✝</button>
     </div>
+    <div class="board__tasks">
+      <ng-content></ng-content>
+    </div>
+    <button class="board__add-task button-icon" (click)="onAddTask.emit()">+</button>
 `
 })
-export class ColumnComponent {
+export class ColumnComponent implements OnInit {
   @Input() column;
   @Input() hasBackwardButton: boolean = false;
   @Input() hasFowardButton: boolean = false;
@@ -30,4 +28,10 @@ export class ColumnComponent {
   @Output() onMoveColumnFoward= new EventEmitter();
   @Output() onDeleteColumn = new EventEmitter();
   @Output() onAddTask = new EventEmitter();
+
+  tempName: string;
+
+  ngOnInit(){
+    this.tempName = this.column.name;
+  }
 }
