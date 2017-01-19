@@ -4,8 +4,6 @@ import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import createLogger from 'redux-logger'
 
-import { Router, Route, IndexRoute, browserHistory } from 'react-router'
-
 import App from './containers/App'
 import Board from './containers/Board'
 // import Timeline from './containers/Timeline'
@@ -28,11 +26,7 @@ const store = createStore(
 
 render(
   <Provider store={store}>
-    <Router history={browserHistory}>
-      <Route path="/" component={App}>
-        <IndexRoute component={Board}/>
-      </Route>
-    </Router>
+		<Board />
   </Provider>,
   document.getElementById('root')
 )
