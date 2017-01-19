@@ -156,31 +156,7 @@ const dateToString = date => `${date.getFullYear()}-${date.getMonth() + 1}-${dat
 
 
 
-const INITIAL_COLUMNS  = {
-  "1": {
-    "name": "Backlog",
-    "index": 0
-  },
-  "2": {
-    "name": "Todo",
-    "index": 1
-  },
-  "3": {
-    "name": "Doing",
-    "index": 2
-  },
-  "4": {
-    "name": "Done",
-    "index": 3
-  },
-  "5": {
-    "name": "Shipped",
-    "index": 4
-  }
-};
-
-function columns (state = INITIAL_COLUMNS, { type, payload }) {
-  console.log('type', type, payload);
+function columns (state = {}, { type, payload }) {
   if (type === __WEBPACK_IMPORTED_MODULE_2__actions__["RENAME_COLUMUN"]) {
     return Object.assign({}, state, {
       [payload.id]: Object.assign({}, state[payload.id], {
@@ -237,10 +213,11 @@ function columns (state = INITIAL_COLUMNS, { type, payload }) {
   }
 
   if (type === __WEBPACK_IMPORTED_MODULE_2__actions__["ADD_COLUMN"]) {
-    const lastIndex = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers__["b" /* arrayfyObject */])(state).reduce((lastIndex, column) => Math.max(lastIndex, column.index), 0);
+    const columns = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers__["b" /* arrayfyObject */])(state);
+    const newIndex = columns.length > 0 ? columns.reduce((lastIndex, column) => Math.max(lastIndex, column.index), 0) + 1 : 0;
     return Object.assign({}, state, {
       [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_uuid__["v4"])()]: {
-        index: lastIndex + 1,
+        index: newIndex,
         name: "Click to change title"
       }
     });
@@ -439,6 +416,9 @@ var ColumnComponent = (function () {
         this.onDeleteColumn = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* EventEmitter */]();
         this.onAddTask = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* EventEmitter */]();
     }
+    ColumnComponent.prototype.ngOnInit = function () {
+        this.tempName = this.column.name;
+    };
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["j" /* Input */])(), 
         __metadata('design:type', Object)
@@ -474,7 +454,7 @@ var ColumnComponent = (function () {
     ColumnComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["U" /* Component */])({
             selector: 'column',
-            template: "\n    <div class=\"board__column\">\n      <form class=\"board__title\" (submit)=\"onColumnNameChange.emit('foo')\">\n        <input  type=\"text\"  class=\"board__title-field\"  (focus)=\"$event.target.select()\" [value]=\"column.name\" />\n      </form>\n      <div class=\"board__actions\">\n        <button type=\"button\" *ngIf=\"hasBackwardButton\" class=\"button-icon\" (click)=\"onMoveColumnBackward.emit()\">\u25C0</button>\n        <button type=\"button\" *ngIf=\"hasFowardButton\" class=\"button-icon\" (click)=\"onMoveColumnFoward.emit()\">\u25B6</button>\n        <button type=\"button\" class=\"button-icon\" (click)=\"onDeleteColumn.emit()\">\u271D</button>\n      </div>\n      <div class=\"board__tasks\">\n        <ng-content></ng-content>\n      </div>\n      <button class=\"board__add-task button-icon\" (click)=\"onAddTask.emit()\">+</button>\n    </div>\n"
+            template: "\n    <form class=\"board__title\" (submit)=\"onColumnNameChange.emit(tempName)\">\n      <input  type=\"text\"  class=\"board__title-field\" name=\"name\" (focus)=\"$event.target.select()\" [(ngModel)]=\"tempName\" />\n    </form>\n    <div class=\"board__actions\">\n      <button type=\"button\" *ngIf=\"hasBackwardButton\" class=\"button-icon\" (click)=\"onMoveColumnBackward.emit()\">\u25C0</button>\n      <button type=\"button\" *ngIf=\"hasFowardButton\" class=\"button-icon\" (click)=\"onMoveColumnFoward.emit()\">\u25B6</button>\n      <button type=\"button\" class=\"button-icon\" (click)=\"onDeleteColumn.emit()\">\u271D</button>\n    </div>\n    <div class=\"board__tasks\">\n      <ng-content></ng-content>\n    </div>\n    <button class=\"board__add-task button-icon\" (click)=\"onAddTask.emit()\">+</button>\n"
         }), 
         __metadata('design:paramtypes', [])
     ], ColumnComponent);
@@ -509,6 +489,9 @@ var TaskComponent = (function () {
         this.onDeleteTask = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* EventEmitter */]();
         this.onTaskNameChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* EventEmitter */]();
     }
+    TaskComponent.prototype.ngOnInit = function () {
+        this.tempName = this.task.name;
+    };
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["j" /* Input */])(), 
         __metadata('design:type', Object)
@@ -540,7 +523,7 @@ var TaskComponent = (function () {
     TaskComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["U" /* Component */])({
             selector: 'task',
-            template: "\n    <div class=\"board__task\">\n      <div class=\"board__task-header\">\n        <form class=\"board__task-name\" (submit)=\"onTaskNameChange.emit('foo')\">\n          <input type=\"text\" class=\"board__task-name-field\" [value]=\"task.name\" (focus)=\"$event.target.select()\">\n        </form>\n      </div>\n      <div class=\"board__task-actions\">\n        <button *ngIf=\"hasBackwardButton\" class=\"button-icon\" (click)=\"onMoveTaskBackward.emit()\">\u25C0</button>\n        <button *ngIf=\"hasFowardButton\" class=\"button-icon\" (click)=\"onMoveTaskFoward.emit()\">\u25B6</button>\n        <button class=\"button-icon\" (click)=\"onDeleteTask.emit()\">\u271D</button>\n      </div>\n      <div class=\"board__task-footer\"></div>\n    </div>\n\n  "
+            template: "\n    <div class=\"board__task\">\n      <div class=\"board__task-header\">\n        <form class=\"board__task-name\" (submit)=\"onTaskNameChange.emit(tempName)\">\n          <input type=\"text\" class=\"board__task-name-field\"  name=\"name\" [(ngModel)]=\"tempName\" (focus)=\"$event.target.select()\">\n        </form>\n      </div>\n      <div class=\"board__task-actions\">\n        <button *ngIf=\"hasBackwardButton\" class=\"button-icon\" (click)=\"onMoveTaskBackward.emit()\">\u25C0</button>\n        <button *ngIf=\"hasFowardButton\" class=\"button-icon\" (click)=\"onMoveTaskFoward.emit()\">\u25B6</button>\n        <button class=\"button-icon\" (click)=\"onDeleteTask.emit()\">\u271D</button>\n      </div>\n      <div class=\"board__task-footer\"></div>\n    </div>\n\n  "
         }), 
         __metadata('design:paramtypes', [])
     ], TaskComponent);
@@ -575,6 +558,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+// @Input() task;
+// @Input() hasBackwardButton: boolean = false;
+// @Input() hasFowardButton: boolean = false;
+//
+// @Output() onMoveTaskFoward = new EventEmitter();
+// @Output() onMoveTaskBackward = new EventEmitter();
+// @Output() onDeleteTask = new EventEmitter();
+// @Output() onTaskNameChange = new EventEmitter();
 var BoardComponent = (function () {
     function BoardComponent(store) {
         var _this = this;
@@ -589,7 +580,7 @@ var BoardComponent = (function () {
     BoardComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["U" /* Component */])({
             selector: 'app-board',
-            template: "\n    <div class=\"board\">\n      <column\n        *ngFor=\"let column of columns\"\n        [column]=\"column\"\n        [hasBackwardButton]=\"column.index > 0\"\n        [hasFowardButton]=\"column.index < columns.length - 1\"\n        (onMoveColumnBackward)=\"this.store.dispatch(actions.moveColumnBackward(column.id))\"\n        (onMoveColumnFoward)=\"this.store.dispatch(actions.moveColumnFoward(column.id))\"\n        (onDeleteColumn)=\"this.store.dispatch(actions.deleteColumn(column.id))\"\n        (onAddTask)=\"this.store.dispatch(actions.addTask(column.id))\"\n        (onColumnNameChange)=\"this.store.dispatch(actions.renameColumn(column.id, $event))\">\n      </column>\n    </div>\n  "
+            template: "\n    <column\n      *ngFor=\"let column of columns\"\n      [column]=\"column\"\n      [hasBackwardButton]=\"column.index > 0\"\n      [hasFowardButton]=\"column.index < columns.length - 1\"\n      (onMoveColumnBackward)=\"this.store.dispatch(actions.moveColumnBackward(column.id))\"\n      (onMoveColumnFoward)=\"this.store.dispatch(actions.moveColumnFoward(column.id))\"\n      (onDeleteColumn)=\"this.store.dispatch(actions.deleteColumn(column.id))\"\n      (onAddTask)=\"this.store.dispatch(actions.addTask(column.id))\"\n      (onColumnNameChange)=\"this.store.dispatch(actions.renameColumn(column.id, $event))\">\n      <task *ngFor=\"let t of column.tasks\"\n            [task]=\"t\"\n            [hasBackwardButton]=\"column.index > 0\"\n            [hasFowardButton]=\"column.index < columns.length - 1\"\n            (onMoveTaskBackward)=\"this.store.dispatch(actions.moveTask(t.id, columns[column.index - 1]))\"\n            (onMoveTaskFoward)=\"this.store.dispatch(actions.moveTask(t.id, columns[column.index + 1]))\"\n            (onDeleteTask)=\"this.store.dispatch(actions.deleteTask(t.id))\"\n            (onTaskNameChange)=\"this.store.dispatch(actions.renameTask(t.id, $event))\"\n      ></task>\n    </column>\n    <button type=\"button\"\n            class=\"board__add-column button-icon\"\n            (click)=\"this.store.dispatch(actions.addColumn())\">+</button>\n  "
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__ngrx_store__["c" /* Store */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__ngrx_store__["c" /* Store */]) === 'function' && _a) || Object])
     ], BoardComponent);
@@ -686,82 +677,7 @@ var environment = {
 
 
 
-const INITIAL_TASKS = {
-  "1": {
-    "name": "Task 1",
-    "column": "2",
-    "isEditing": false,
-    "transactions": [
-      {
-        "type": "create",
-        "date": "20/12/2016"
-      },
-      {
-        "type": "move",
-        "from": "1",
-        "to": "2",
-        "date": "20/12/2016"
-      }
-    ]
-  },
-  "2": {
-    "name": "Task 2",
-    "column": "1",
-    "isEditing": false,
-    "transactions": [
-      {
-        "type": "create",
-        "date": "20/12/2016"
-      }
-    ]
-  },
-  "3": {
-    "name": "Task 3",
-    "column": "1",
-    "isEditing": false,
-    "transactions": [
-      {
-        "type": "create",
-        "date": "20/12/2016"
-      }
-    ]
-  },
-  "4": {
-    "name": "Task 4",
-    "column": "3",
-    "isEditing": false,
-    "transactions": [
-      {
-        "type": "create",
-        "date": "20/12/2016"
-      }
-    ]
-  },
-  "5": {
-    "name": "Task 5",
-    "column": "4",
-    "isEditing": false,
-    "transactions": [
-      {
-        "type": "create",
-        "date": "20/12/2016"
-      }
-    ]
-  },
-  "6": {
-    "name": "Task 6",
-    "column": "5",
-    "isEditing": false,
-    "transactions": [
-      {
-        "type": "create",
-        "date": "20/12/2016"
-      }
-    ]
-  }
-};
-
-function tasks (state = INITIAL_TASKS, { type, payload }) {
+function tasks (state = {}, { type, payload }) {
   if (type === __WEBPACK_IMPORTED_MODULE_1__actions__["MOVE_TASK"]) {
     return Object.assign({}, state, {
       [payload.id]: Object.assign({}, state[payload.id], {

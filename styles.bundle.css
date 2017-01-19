@@ -50,12 +50,14 @@ button {
 html,
 body,
 #root,
-.l-app {
+.l-app,
+app-root {
   min-height: 100vh;
   width: 100vw;
 }
 
 .l-app,
+app-root,
 .l-app__container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -67,6 +69,7 @@ body,
 }
 
 .l-app__container,
+app-board,
 .board {
   -webkit-box-flex: 1;
       -ms-flex: 1;
@@ -138,7 +141,8 @@ button {
 }
 
 
-.board {
+.board,
+app-board {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -146,7 +150,8 @@ button {
 }
 
 .board__add-column,
-.board__column {
+.board__column,
+column {
   -webkit-box-flex: 1;
       -ms-flex: 1 0;
           flex: 1 0;
@@ -157,7 +162,8 @@ button {
   font-size: 4rem;
 }
 
-.board__column {
+.board__column,
+column {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -169,7 +175,8 @@ button {
   border-right: var(--s-tiny) dashed var(--c-melrose-lighter);
 }
 
-.board__column:not(:last-child) {
+.board__column:not(:last-child),
+column:not(:last-child) {
   margin-right: var(--s-small);
 }
 
@@ -179,7 +186,8 @@ button {
   text-align: right;
 }
 
-.board__column:hover .board__actions {
+.board__column:hover .board__actions,
+column:hover .board__actions {
   visibility: visible;
   opacity: 1;
 }
@@ -295,7 +303,8 @@ button {
 
 .board__task.is-editing .board__task-actions,
 .board__task:hover .board__task-actions,
-.board__column:hover .board__add-task {
+.board__column:hover .board__add-task,
+column:hover .board__add-task  {
   visibility: visible;
   opacity: 1;
   display: block;
