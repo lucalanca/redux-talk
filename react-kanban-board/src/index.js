@@ -26,7 +26,9 @@ const store = createStore(
 
 render(
   <Provider store={store}>
-		<Board />
+		<App>
+			<Board />
+		</App>
   </Provider>,
   document.getElementById('root')
 )
