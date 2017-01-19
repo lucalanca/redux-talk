@@ -12,31 +12,7 @@ import {
   removeKeyFromObject
 } from '../helpers';
 
-const INITIAL_COLUMNS  = {
-  "1": {
-    "name": "Backlog",
-    "index": 0
-  },
-  "2": {
-    "name": "Todo",
-    "index": 1
-  },
-  "3": {
-    "name": "Doing",
-    "index": 2
-  },
-  "4": {
-    "name": "Done",
-    "index": 3
-  },
-  "5": {
-    "name": "Shipped",
-    "index": 4
-  }
-};
-
-export default function columns (state = INITIAL_COLUMNS, { type, payload }) {
-  console.log('type', type, payload);
+export default function columns (state = {}, { type, payload }) {
   if (type === RENAME_COLUMUN) {
     return Object.assign({}, state, {
       [payload.id]: Object.assign({}, state[payload.id], {
@@ -93,10 +69,11 @@ export default function columns (state = INITIAL_COLUMNS, { type, payload }) {
   }
 
   if (type === ADD_COLUMN) {
-    const lastIndex = arrayfyObject(state).reduce((lastIndex, column) => Math.max(lastIndex, column.index), 0);
+    const columns = arrayfyObject(state);
+    const newIndex = columns.length > 0 ? columns.reduce((lastIndex, column) => Math.max(lastIndex, column.index), 0) + 1 : 0;
     return Object.assign({}, state, {
       [v4()]: {
-        index: lastIndex + 1,
+        index: newIndex,
         name: "Click to change title"
       }
     });

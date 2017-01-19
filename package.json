@@ -1,0 +1,27 @@
+{
+  "name": "redux-talk",
+  "version": "1.0.0",
+  "description": "TODO: - [ ] add task - [ ] move transaction add current user and date - [ ] timeline view - [ ] user view",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "copy-angular": "cp -a ./angular2-kanban-board/dist/. ./build/ && mv build/index.html build/angular2.html",
+    "copy-react": "cp -a ./react-kanban-board/build/. ./build/ && mv build/index.html build/react.html",
+    "copy-index": "cp ./index.html build/",
+    "copy": "npm run copy-angular && npm run copy-react && npm run copy-index",
+    "deploy": "npm run copy && gh-pages -d build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucalanca/redux-talk.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucalanca/redux-talk/issues"
+  },
+  "homepage": "https://github.com/lucalanca/redux-talk#readme",
+  "devDependencies": {
+    "gh-pages": "^0.12.0"
+  }
+}
