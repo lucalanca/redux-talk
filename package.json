@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "copy-angular": "cp -a ./angular2-kanban-board/dist/. ./build/ && mv build/index.html build/angular2.html",
-    "copy-react": "cp -a ./react-kanban-board/build/. ./build/ && mv build/index.html build/react.html",
-    "copy-index": "cp ./index.html build/",
+    "copy-react": "cp -a ./react-kanban-board/build/. ./build/",
+    "copy-index": "cp ./toc.html build/",
     "copy": "npm run copy-angular && npm run copy-react && npm run copy-index",
     "deploy": "npm run copy && gh-pages -d build"
   },
