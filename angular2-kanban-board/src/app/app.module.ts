@@ -23,12 +23,14 @@ export function reducer(state: any, action: any) {
 import { AppComponent } from './app.component';
 import { ColumnComponent } from './components/Column';
 import { TaskComponent } from './components/Task';
+import { BoardComponent } from './containers/Board';
 
 @NgModule({
   declarations: [
-    AppComponent
-    ,  ColumnComponent
-    ,  TaskComponent
+    AppComponent,
+    ColumnComponent,
+    TaskComponent,
+    BoardComponent
   ],
   imports: [
     BrowserModule,

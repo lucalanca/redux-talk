@@ -9,9 +9,9 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
         <input  type="text"  class="board__title-field"  (focus)="$event.target.select()" [value]="column.name" />
       </form>
       <div class="board__actions">
-        <button type="button" class="button-icon" (click)="onMoveColumnBackward.emit()">◀</button>
-        <button type="button" class="button-icon" (click)="onMoveColumnFoward.emit()">▶</button>
-        <button type="button" class="button-icon" (click)="onDeleteColumn.emit()">✝</button>}
+        <button type="button" *ngIf="hasBackwardButton" class="button-icon" (click)="onMoveColumnBackward.emit()">◀</button>
+        <button type="button" *ngIf="hasFowardButton" class="button-icon" (click)="onMoveColumnFoward.emit()">▶</button>
+        <button type="button" class="button-icon" (click)="onDeleteColumn.emit()">✝</button>
       </div>
       <div class="board__tasks">
         <ng-content></ng-content>
@@ -22,6 +22,8 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 })
 export class ColumnComponent {
   @Input() column;
+  @Input() hasBackwardButton: boolean = false;
+  @Input() hasFowardButton: boolean = false;
 
   @Output() onColumnNameChange = new EventEmitter();
   @Output() onMoveColumnBackward = new EventEmitter();

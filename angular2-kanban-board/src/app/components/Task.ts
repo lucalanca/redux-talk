@@ -10,8 +10,8 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
         </form>
       </div>
       <div class="board__task-actions">
-        <button class="button-icon" (click)="onMoveTaskBackward.emit()">◀</button>
-        <button class="button-icon" (click)="onMoveTaskFoward.emit()">▶</button>
+        <button *ngIf="hasBackwardButton" class="button-icon" (click)="onMoveTaskBackward.emit()">◀</button>
+        <button *ngIf="hasFowardButton" class="button-icon" (click)="onMoveTaskFoward.emit()">▶</button>
         <button class="button-icon" (click)="onDeleteTask.emit()">✝</button>
       </div>
       <div class="board__task-footer"></div>
@@ -20,8 +20,9 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
   `
 })
 export class TaskComponent {
-
   @Input() task;
+  @Input() hasBackwardButton: boolean = false;
+  @Input() hasFowardButton: boolean = false;
 
   @Output() onMoveTaskFoward = new EventEmitter();
   @Output() onMoveTaskBackward = new EventEmitter();
